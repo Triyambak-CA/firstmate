@@ -1,0 +1,42 @@
+### S1: installer owns only its key, preserves foreign keys (real CLI, isolated HOME)
+
+--- store BEFORE install ---
+{
+  "captain-audit": [ { "type": "command", "command": "echo hi", "timeout": 10 } ],
+  "firstmate-turn-end": [ { "type": "command", "command": "stale" } ]
+}
+
+$ HOME=$LAB/home bin/fm-agy-turnend-hook.sh install
+exit=0
+
+--- store AFTER install (parsed, keys + firstmate entry) ---
+top-level keys: ["captain-audit","firstmate-turn-end"]
+captain-audit preserved verbatim: [{"type":"command","command":"echo hi","timeout":10}]
+firstmate-turn-end: {
+  "PreInvocation": [
+    {
+      "type": "command",
+      "command": "'/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-live.0rzefK/home/.gemini/antigravity-cli/fm-turn-end.sh' pre-invocation",
+      "timeout": 5
+    }
+  ],
+  "Stop": [
+    {
+      "type": "command",
+      "command": "'/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-live.0rzefK/home/.gemini/antigravity-cli/fm-turn-end.sh' stop",
+      "timeout": 5
+    }
+  ]
+}
+
+--- installed artifacts ---
+-rwx------@ 1 triyambak  staff  1888 Sep 18 23:29 /var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-live.0rzefK/home/.gemini/antigravity-cli/fm-turn-end.sh
+drwx------@ 2 triyambak  staff  64 Sep 18 23:29 /var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-live.0rzefK/home/.gemini/antigravity-cli/fm-turn-end.d
+
+$ HOME=$LAB/home bin/fm-agy-turnend-hook.sh remove
+exit=0
+
+--- store AFTER remove (parsed) ---
+top-level keys: ["captain-audit"]
+captain-audit still verbatim: [{"type":"command","command":"echo hi","timeout":10}]
+firstmate-turn-end present: false

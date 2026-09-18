@@ -1,0 +1,10 @@
+### S11: the rendered-tail idle read is RETAINED as the no-record fallback (intent item 4)
+An unwired or raw agy launch keeps no record, so the classifier falls back to the pinned status row.
+
+busy   pane -> busy agy-regex
+idle   pane -> unknown agy-regex
+echo   pane -> unknown agy-regex
+
+and agy's busy signature must never read busy for another adapter
+(each regex source is scoped to its own harness= and answers only for it):
+agy busy pane read as harness=grok  -> idle grok-regex

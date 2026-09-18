@@ -1,0 +1,22 @@
+### S3: a refusal raised AFTER the guards pass must roll back what the run created
+(round-2 fix agy-installer-orphans-script-when-store-edit-refuses)
+
+--- prefix: config dir is mode 555, no hooks.json yet (the -w guard cannot fire) ---
+$ HOME=<lab> /var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-live.0rzefK/pre-fix-installer.sh install
+error: EACCES: permission denied, open '/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T/agy-live.0rzefK/rollback-prefix/home/.gemini/config/.hooks.json.fm-turnend.13455.a06d61f42b543916'
+fm-agy-turnend-hook: refused: agy's hooks.json could not be updated safely.
+exit=1
+what the run left behind under <HOME>/.gemini:
+<HOME>/.gemini/antigravity-cli
+<HOME>/.gemini/antigravity-cli/fm-turn-end.d
+<HOME>/.gemini/antigravity-cli/fm-turn-end.sh
+<HOME>/.gemini/config
+
+--- fixed: config dir is mode 555, no hooks.json yet (the -w guard cannot fire) ---
+$ HOME=<lab> /Users/triyambak/.no-mistakes/worktrees/75495643dde0/01M2TKFYG433H54DEC9DA17EV4/bin/fm-agy-turnend-hook.sh install
+error: EACCES: permission denied, open '/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T/agy-live.0rzefK/rollback-fixed/home/.gemini/config/.hooks.json.fm-turnend.13562.4c909a4e0f2c0a82'
+fm-agy-turnend-hook: refused: agy's hooks.json could not be updated safely.
+exit=1
+what the run left behind under <HOME>/.gemini:
+<HOME>/.gemini/config
+

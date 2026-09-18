@@ -1,0 +1,16 @@
+### S7 (attempted live): the real agy 1.2.6 binary under a throwaway HOME
+The vendor binary LOADED firstmate's installed hook, then stopped at authentication:
+agy's credentials are not stored under ~/.gemini on macOS (they are in the login keychain),
+so a copied HOME cannot authenticate and no turn could be run.
+
+--- agy's own CLI log from the run (agy 1.2.6, throwaway HOME) ---
+I0918 23:30:16.667733       1 manager.go:433] Initializing CLI store manager for workspace /var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T/agy-live.0rzefK/workspace
+I0918 23:30:16.676031       1 hooks_manager.go:53] loaded 1 named hooks from 1 hooks.json file(s)
+I0918 23:30:16.676133       1 printmode.go:372] Print mode: not authenticated, trying silent auth
+I0918 23:30:16.747306       1 printmode.go:378] Print mode: silent auth failed
+W0918 23:30:49.811282       1 printmode.go:435] Print mode: auth cancelled or interrupted
+
+--- the same binary IS authenticated under the captain's real HOME (read-only listing) ---
+$ agy models   ->  gemini-3.8-flash-low, ... (succeeds)
+$ HOME=<throwaway> agy models
+Error: Please sign in to view available models. Launch the CLI without arguments to sign in.

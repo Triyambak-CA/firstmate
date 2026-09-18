@@ -1,0 +1,47 @@
+### Targeted suites run for this change
+
+$ bash tests/fm-agy-harness.test.sh
+ok - fm-agy-trust.sh: registers the logical and resolved worktree paths and preserves the store
+ok - fm-agy-trust.sh: creates agy's settings store when none exists
+ok - fm-agy-trust.sh: refuses every out-of-scope path and never rewrites a broken store
+ok - fm-spawn: agy pre-registers the worktree and launches straight into a busy turn
+ok - fm-spawn: agy answers a dialog that renders anyway exactly once, then confirms busy
+ok - fm-spawn: on an unregistered path a premature busy verdict waits for the dialog to be answered
+ok - fm-spawn: a busy verdict on an unregistered path without a dialog fails and closes the endpoint
+ok - fm-spawn: an agy dialog that never turns busy fails the spawn and closes the endpoint
+ok - fm-spawn: a missing agy executable refuses before pane creation
+ok - fm-spawn: agy cannot be launched as a secondmate
+ok - fm-spawn: agy arms busy wiring and exports its token without touching the worktree
+ok - fm-spawn: a raw agy launch installs no global hook and arms no wiring
+ok - fm-spawn: a pre-trusted agy pane that never renders a turn fails the gate
+ok - fm-spawn: a refused agy hook install degrades the spawn visibly instead of killing it
+ok - fm-agy-turnend-hook.sh: owns only its own key and installs idempotently
+ok - fm-agy-turnend-hook.sh: refuses a non-object root and a symlinked store without writing
+ok - fm-agy-turnend-hook.sh: a failed store edit leaves no hook script or registry behind
+ok - fm-agy-turnend-hook.sh: the registered command fires through sh -c from a spaced home
+ok - fm-agy-turnend-hook.sh: the installed hook is inert without a registry-backed token
+ok - fm-agy-turnend-hook.sh: PreInvocation opens and Stop closes, and a stale generation or relative path is refused
+
+total: 40 ok, 0 not ok
+
+$ bash tests/fm-control.test.sh   (with the new agy interrupt case)
+ok - fm-control interrupt: every verified harness gets its own verified key and repeat count
+ok - fm-control interrupt: opencode needs a double Escape, claude a single one
+ok - fm-control: prefixed recorded harnesses reach interrupt and exit mechanics
+ok - fm-control interrupt: a backend that cannot deliver the harness's key refuses instead of sending another
+ok - fm-control: interrupt and exit lock before task-state resolution
+ok - fm-control interrupt: refuses when no agent is running rather than keying a shell
+ok - fm-control exit: a busy agent receives interrupt delivery before the exit command
+ok - fm-control interrupt: unconfirmed delivery preserves observed busy state
+ok - fm-control interrupt: agy's busy record is closed by firstmate, which fires no Stop for a cancel
+ok - fm-control interrupt: muse confirms cancellation from its session log
+ok - fm-control interrupt: postconditions are revalidated after acknowledgement polling
+ok - fm-control exit: an interrupt-stopped agent satisfies the gone-state postcondition
+ok - fm-control interrupt: grok reports delivery without claiming cancellation
+ok - fm-control interrupt: grok's idle footer does not confirm cancellation
+
+total: 36 ok, 0 not ok
+
+$ bash tests/fm-teardown.test.sh  (the two agy-touching cases)
+ok - a secondmate home's teardown delivers the child's final line or refuses until it can
+ok - forced secondmate teardown holds every descendant lifecycle and metadata lock

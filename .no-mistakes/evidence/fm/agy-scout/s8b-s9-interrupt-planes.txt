@@ -1,0 +1,18 @@
+### S8b: the close is scoped to agy - an adapter that owns its own turn-end verdict is NOT overwritten
+agy      before=busy fm-spawn    after=idle fm-interrupt   interrupt-delivered t1 harness=agy backend=tmux verified=agent-alive cancel=unconfirmed
+grok     before=unknown source-mismatch after=unknown source-mismatch  interrupt-delivered t1 harness=grok backend=tmux verified=agent-alive cancel=unconfirmed
+claude   before=busy fm-spawn    after=busy fm-spawn       interrupt-delivered t1 harness=claude backend=tmux verified=agent-alive cancel=unconfirmed
+
+### S9: the SAME close on the legacy key plane - fm-send --key Escape (bin/fm-send.sh)
+record before: v1 gen=g1789754609.68060.3117 seq=1 state=busy source=fm-spawn event=launch-brief ts=1789754609
+$ bin/fm-send.sh t1 --key Escape
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+●  WATCHER DOWN - SUPERVISION IS OFF
+●  1 task(s) in flight, but no watcher has a fresh beacon (last beat: never, grace 300s).
+●  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.
+●  This is a supervision warning only; the requested message WILL still be sent.
+●  watcher supervision needs Stop-owned automatic recovery; inspect the hook registration and startup status before ending the turn.
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+exit=0
+record after:  v1 gen=g1789754609.68060.3117 seq=2 state=idle source=fm-interrupt event=interrupt ts=1789754614
+supervisor verdict after: idle fm-interrupt

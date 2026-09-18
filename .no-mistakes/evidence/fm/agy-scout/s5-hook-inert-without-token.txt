@@ -1,0 +1,30 @@
+### S5: the installed hook is inert for every session firstmate's token does not name
+###     (the captain's own agy sessions and the Antigravity IDE share this hooks.json)
+
+a task record armed by firstmate elsewhere: v1 gen=g1789754386.17507.26164 seq=1 state=busy source=fm-spawn event=launch-brief ts=1789754386
+
+--- no FM_AGY_TURNEND_TOKEN at all (the captain's own agy session / the IDE) ---
+hook exit=0  stdout={"decision":"stop"}
+record still: v1 gen=g1789754386.17507.26164 seq=1 state=busy source=fm-spawn event=launch-brief ts=1789754386
+
+--- a well-formed token that is not in the registry ---
+hook exit=0  stdout={"decision":"stop"}
+record still: v1 gen=g1789754386.17507.26164 seq=1 state=busy source=fm-spawn event=launch-brief ts=1789754386
+
+--- a traversal attempt ---
+hook exit=0  stdout={"decision":"stop"}
+record still: v1 gen=g1789754386.17507.26164 seq=1 state=busy source=fm-spawn event=launch-brief ts=1789754386
+
+--- a forged token naming a real file outside the registry ---
+hook exit=0  stdout={"decision":"stop"}
+record still: v1 gen=g1789754386.17507.26164 seq=1 state=busy source=fm-spawn event=launch-brief ts=1789754386
+
+--- a registry token carrying relative paths (values are data too) ---
+hook exit=0  stdout={"decision":"stop"}
+record still: v1 gen=g1789754386.17507.26164 seq=1 state=busy source=fm-spawn event=launch-brief ts=1789754386
+
+nothing was created outside the registry directory:
+<HOME>/.gemini/antigravity-cli/fm-turn-end.d
+<HOME>/.gemini/antigravity-cli/fm-turn-end.d/fm.918BBaXJkxG3
+<HOME>/.gemini/antigravity-cli/fm-turn-end.d/fm.V1L02DTj34wP
+<HOME>/.gemini/antigravity-cli/fm-turn-end.sh

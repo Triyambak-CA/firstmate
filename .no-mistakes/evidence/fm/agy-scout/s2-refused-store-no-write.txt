@@ -1,0 +1,29 @@
+### S2: a refused store is refused WITHOUT a write and leaves nothing orphaned in the home
+
+--- case: symlink ---
+$ HOME=<lab> bin/fm-agy-turnend-hook.sh install
+fm-agy-turnend-hook: refused: '/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-live.0rzefK/refuse-symlink/home/.gemini/config/hooks.json' is a symlink; firstmate edits only a regular file it owns.
+exit=1
+store bytes unchanged: yes
+orphans left in the home (anything under .gemini/antigravity-cli):
+<HOME>/.gemini/config
+<HOME>/.gemini/config/hooks.json
+
+--- case: array-root ---
+$ HOME=<lab> bin/fm-agy-turnend-hook.sh install
+fm-agy-turnend-hook: refused: '/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-live.0rzefK/refuse-array-root/home/.gemini/config/hooks.json' does not hold a JSON object; firstmate edits only a store it can read.
+exit=1
+store bytes unchanged: yes
+orphans left in the home (anything under .gemini/antigravity-cli):
+<HOME>/.gemini/config
+<HOME>/.gemini/config/hooks.json
+
+--- case: unowned-shape ---
+$ HOME=<lab> bin/fm-agy-turnend-hook.sh install
+fm-agy-turnend-hook: refused: '/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-live.0rzefK/refuse-unowned-shape/home/.gemini/config/hooks.json' does not hold a JSON object; firstmate edits only a store it can read.
+exit=1
+store bytes unchanged: yes
+orphans left in the home (anything under .gemini/antigravity-cli):
+<HOME>/.gemini/config
+<HOME>/.gemini/config/hooks.json
+

@@ -1,0 +1,8 @@
+### S4b: the same spaced home with the PRE-FIX (unquoted) installer - the regression this branch fixed
+install exit=0
+registered Stop command (unquoted): /var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-live.0rzefK/Old Home/home/.gemini/antigravity-cli/fm-turn-end.sh stop
+record before: v1 gen=g1789754395.20703.6136 seq=1 state=busy source=fm-spawn event=launch-brief ts=1789754395
+sh: line 1: /var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-live.0rzefK/Old: No such file or directory
+sh -c exit=127
+record after:  v1 gen=g1789754395.20703.6136 seq=1 state=busy source=fm-spawn event=launch-brief ts=1789754395
+turn-end marker: NEVER touched - the record would stand busy to the BUSY_TURN_MAX_SECS bound

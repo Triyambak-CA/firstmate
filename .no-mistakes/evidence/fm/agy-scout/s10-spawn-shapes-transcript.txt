@@ -1,0 +1,83 @@
+
+========== 1. a managed agy spawn: the hook is installed, a private token is minted, the launch exports it ==========
+$ fm-spawn.sh agy-ev-wired-28280 <project> --harness agy --model gemini-3.8-flash-low
+warning: /private/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T/fm-agy-harness.1jVMCu/evwired/home/data/agy-ev-wired-28280/launch-brief.md records no delivery contract line (scaffolded before ship briefs recorded one); launching on the explicit --mode no-mistakes - confirm its definition of done matches
+spawned agy-ev-wired-28280 harness=agy kind=ship mode=no-mistakes yolo=off window=firstmate:fm-agy-ev-wired-28280 worktree=/private/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T/fm-agy-harness.1jVMCu/evwired/wt
+exit=0
+
+--- the launch command typed into the pane ---
+env -u CURSOR_AGENT -u CURSOR_INVOKED_AS -u GEMINI_CLI env -u CLAUDECODE -u PI_CODING_AGENT -u GROK_AGENT -u FM_PI_HARNESS FM_AGY_TURNEND_TOKEN='fm.aidO2Dv6yMTy' '<CASE>/fake/fakebin/agy' --prompt-interactive "$('/Users/triyambak/.no-mistakes/worktrees/75495643dde0/01M2TKFYG433H54DEC9DA17EV4/bin/fm-operational-input.sh' encode launch-brief < '<HOME>/data/agy-ev-wired-28280/launch-brief.md')" --model 'gemini-3.8-flash-low' --dangerously-skip-permissions
+
+--- firstmate-turn-end key now in the global store ---
+{
+  "PreInvocation": [
+    {
+      "type": "command",
+      "command": "'<HOME>/.gemini/antigravity-cli/fm-turn-end.sh' pre-invocation",
+      "timeout": 5
+    }
+  ],
+  "Stop": [
+    {
+      "type": "command",
+      "command": "'<HOME>/.gemini/antigravity-cli/fm-turn-end.sh' stop",
+      "timeout": 5
+    }
+  ]
+}
+
+--- the private per-task token (mode 600) at <HOME>/.gemini/antigravity-cli/fm-turn-end.d/fm.aidO2Dv6yMTy ---
+turnend=<HOME>/state/agy-ev-wired-28280.turn-ended
+busy_event=/Users/triyambak/.no-mistakes/worktrees/75495643dde0/01M2TKFYG433H54DEC9DA17EV4/bin/fm-busy-event.sh
+state=<HOME>/state
+id=agy-ev-wired-28280
+gen=g1789754850.29371.25037
+
+--- nothing written into the project worktree ---
+no .fm-agy* pointer in the worktree
+
+========== 1b. teardown retires the task: its private token goes, the SHARED hook key stays ==========
+registry entry before teardown: present
+$ fm-teardown.sh agy-ev-wired-28280 --force
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+●  WATCHER DOWN - SUPERVISION IS OFF
+●  1 task(s) in flight, but no live watcher process holds this home lock (last beat: 6s ago).
+●  Trust the emitted supervision protocol for this harness; do not use shell & for watcher repair.
+●  This is a supervision warning only; the guarded operation WILL still run.
+●  repair missing watcher supervision according to the session-start block for this harness; do not use shell &.
+●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+error: tmux window firstmate:fm-agy-ev-wired-28280 could not be read after its close, so whether it survived is unknown
+error: the tmux endpoint firstmate:fm-agy-ev-wired-28280 for agy-ev-wired-28280 could not be closed, so it may still be live.
+error: --force authorizes continuing past a close that failed, so this cleanup proceeds toward removing the task's records; reconcile firstmate:fm-agy-ev-wired-28280 yourself, because nothing here can still be relied on to name it.
+<CASE>/project: already current
+teardown agy-ev-wired-28280 complete (window firstmate:fm-agy-ev-wired-28280, worktree <CASE>/wt)
+Backlog: agy-ev-wired-28280 just finished (this home keeps no markdown backlog at <HOME>/data/backlog.md). Update <HOME>/data/backlog.md - move agy-ev-wired-28280 to Done, keep Done to the 10 most recent, then re-scan Queued and dispatch only work whose blockers are gone and date is due.
+exit=0
+
+registry entry after teardown:  removed
+state-side token pointer after: removed
+shared firstmate-turn-end key after: still installed (deliberate: other live agy tasks may share it)
+
+========== 2. a dotfiles-managed hooks.json (a symlink): the install is refused and the spawn degrades VISIBLY ==========
+$ fm-spawn.sh agy-ev-unwired-28280 <project> --harness agy --model gemini-3.8-flash-low
+fm-agy-turnend-hook: refused: '<HOME>/.gemini/config/hooks.json' is a symlink; firstmate edits only a regular file it owns.
+warning: agy's global turn-end hook could not be installed safely (see the refusal above); task agy-ev-unwired-28280 will run WITHOUT semantic busy state and WITHOUT a turn-end signal, on the weaker rendered-tail idle read alone
+warning: <HOME>/data/agy-ev-unwired-28280/launch-brief.md records no delivery contract line (scaffolded before ship briefs recorded one); launching on the explicit --mode no-mistakes - confirm its definition of done matches
+spawned agy-ev-unwired-28280 harness=agy kind=ship mode=no-mistakes yolo=off window=firstmate:fm-agy-ev-unwired-28280 worktree=/private/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T/fm-agy-harness.1jVMCu/evunwired/wt
+exit=0
+
+--- the symlink target was NOT written through ---
+{}
+
+--- no busy generation, no token, launch carries no token export ---
+busy-gen: absent
+token sidecar: absent
+launch: env -u CURSOR_AGENT -u CURSOR_INVOKED_AS -u GEMINI_CLI env -u CLAUDECODE -u PI_CODING_AGENT -u GROK_AGENT -u FM_PI_HARNESS '<CASE>/fake/fakebin/agy' --prompt-interactive "$('/Users/triyambak/.no-mistakes/worktrees/75495643dde0/01M2TKFYG433H54DEC9DA17EV4/bin/fm-operational-input.sh' encode launch-brief < '<HOME>/data/agy-ev-unwired-28280/launch-brief.md')" --model 'gemini-3.8-flash-low' --dangerously-skip-permissions
+
+========== 3. the scope cap: agy is a crewmate/scout adapter and a secondmate launch is refused ==========
+$ fm-spawn.sh agy-ev-sm-28280 --secondmate agy
+error: agy is a verified crewmate/scout adapter only and cannot run a secondmate; it has no primary supervision protocol. Select a harness verified for secondmates.
+exit=1
+
+--- and the shared global store was never touched for a refused secondmate ---
+hooks.json: absent

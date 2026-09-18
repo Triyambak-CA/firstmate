@@ -1,0 +1,25 @@
+### S8: fm-control interrupt closes agy's busy record itself (intent item 4, the fm-control plane)
+agy's Stop hook does not fire on a manual interrupt and agy has no session-end event,
+so without this the record would read busy until the next turn opened.
+
+record before the interrupt: v1 gen=g1789754567.60606.5247 seq=1 state=busy source=fm-spawn event=launch-brief ts=1789754567
+supervisor verdict before:   busy fm-spawn
+
+$ bin/fm-control.sh t1 interrupt     (isolated sandbox fleet, fake endpoint provider)
+interrupt-delivered t1 harness=agy backend=tmux verified=agent-alive cancel=unconfirmed
+exit=0
+
+keys delivered to the endpoint: Escape 
+text typed into the composer:   ''
+record after the interrupt:  v1 gen=g1789754567.60606.5247 seq=2 state=idle source=fm-interrupt event=interrupt ts=1789754583
+supervisor verdict after:    idle fm-interrupt
+
+### S8c: the counterfactual - the SAME interrupt driven through the BASE commit's bin/fm-control.sh
+(9bc051ff, before record_interrupt_idle existed; every other library on the branch unchanged)
+record before: v1 ... seq=1 state=busy source=fm-spawn
+$ bin/fm-control.sh t1 interrupt   ->  interrupt-delivered t1 harness=agy ... cancel=unconfirmed
+record after:  v1 ... seq=1 state=busy source=fm-spawn      <- unchanged, the task stands busy
+supervisor verdict (BASE):   busy fm-spawn
+supervisor verdict (BRANCH): idle fm-interrupt
+
+This is the regression tests/fm-control.test.sh::test_agy_interrupt_closes_its_own_busy_record now locks in.

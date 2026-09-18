@@ -1,0 +1,25 @@
+### S4+S6: a spaced HOME, the registered command run exactly as agy runs it (sh -c),
+###        PreInvocation opens the turn and Stop closes it and touches the turn-end marker.
+
+$ HOME='/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-live.0rzefK/First Last/home' bin/fm-agy-turnend-hook.sh install
+exit=0
+registered PreInvocation command: '/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-live.0rzefK/First Last/home/.gemini/antigravity-cli/fm-turn-end.sh' pre-invocation
+registered Stop command:          '/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-live.0rzefK/First Last/home/.gemini/antigravity-cli/fm-turn-end.sh' stop
+
+minted token: fm.918BBaXJkxG3 (armed generation g1789754378.15296.12289)
+record at arm time: v1 gen=g1789754378.15296.12289 seq=1 state=busy source=fm-spawn event=launch-brief ts=1789754378
+
+--- fire PreInvocation through sh -c, as agy does on Unix ---
+hook exit=0 stdout={}
+record: v1 gen=g1789754378.15296.12289 seq=2 state=busy source=agy-hook event=pre-invocation ts=1789754378
+turn-end marker exists: no
+
+--- fire Stop through sh -c ---
+hook exit=0 stdout={"decision":"stop"}
+record: v1 gen=g1789754378.15296.12289 seq=3 state=idle source=agy-hook event=stop ts=1789754379
+turn-end marker exists: yes
+
+--- adversarial: a stale generation must not move a re-armed record ---
+re-armed to generation g1789754379.15578.30865; record now: v1 gen=g1789754379.15578.30865 seq=1 state=busy source=fm-spawn event=launch-brief ts=1789754379
+stale-gen hook exit=0
+record after the stale-gen Stop: v1 gen=g1789754379.15578.30865 seq=1 state=busy source=fm-spawn event=launch-brief ts=1789754379
