@@ -1,0 +1,251 @@
+<section id="s19">
+  <div class="ghost">19</div>
+  <div class="sectag">Section 19</div>
+  <h2>Data-aggregator deep dive, and an audit of what a screen gets wrong</h2>
+  <p class="dek">The premium insights panel this section normally uses was unreachable. The multi-year operating series was therefore reconstructed by hand, and the aggregator's own derived metrics were audited against business reality. The audit turned out to be the more valuable half.</p>
+
+  <div class="flag warn">
+    <div class="fl">Method, stated plainly</div>
+    <p>The machine-extracted operating series with source citations could not be opened. Everything in the operating table below was <strong>reconstructed by the analyst</strong> from separately reported top-line and segment figures and from disclosed growth rates, exactly as the fallback procedure requires. No aggregator output is presented here as a primary source, and every derived figure is marked.</p>
+  </div>
+
+  <h3>The reconstructed operating series</h3>
+  <div class="tw">
+  <table>
+    <thead><tr><th>Operating metric</th><th>FY25</th><th>FY26</th><th>Q1 FY27</th><th>How obtained</th></tr></thead>
+    <tbody>
+      <tr><td>Transacted value (Rs cr)</td><td>89,823</td><td class="be">79,737</td><td>23,814</td><td>Company-reported, relayed at second hand</td></tr>
+      <tr><td>E-commerce revenue (Rs cr)</td><td>281.2</td><td class="bu">329.72</td><td>89.49</td><td>FY26 and Q1 FY27 reported; FY25 derived by deflating the +17.25% growth rate</td></tr>
+      <tr><td>Realised take rate (bps)</td><td>31.3</td><td class="bu">41.4</td><td class="be">37.6</td><td>Derived. MSTC publishes no take rate</td></tr>
+      <tr><td>Revenue from operations (Rs cr)</td><td>310.96</td><td>369.66</td><td>94.24</td><td>Reported</td></tr>
+      <tr><td>Other income (Rs cr)</td><td>about 77</td><td>about 83.38</td><td>23.76</td><td>Derived as total income less revenue from operations</td></tr>
+      <tr><td>Operating EBIT (Rs cr)</td><td class="na">not separable</td><td>about 235</td><td class="na">not separately reported</td><td>EBITDA less derived depreciation</td></tr>
+      <tr><td>Employees</td><td class="na">n.a.</td><td class="na">n.a.</td><td>289</td><td>Aggregator tag, undated</td></tr>
+      <tr class="tot"><td>Mineral blocks auctioned nationally</td><td class="na">about 90 average FY22-FY25</td><td class="bu">212</td><td class="na">n.a.</td><td>Ministry data via press coverage. The mix driver behind FY26's take rate</td></tr>
+    </tbody>
+    <caption>Rs cr. Every derived figure is marked. The single most important row is the take rate, which is not disclosed by the company under any name and had to be back-solved. That a fee-on-value business does not publish its realised fee rate is, in itself, the most significant disclosure finding in this report.</caption>
+  </table>
+  </div>
+
+  <h3>Restatements and shifting bases found</h3>
+  <div class="flag">
+    <div class="fl">Three separate instances of the same metric on two bases</div>
+    <ol>
+      <li><strong>Transacted value.</strong> An FY23 figure of about Rs 3,016 cr circulates under the same label as the FY25 and FY26 figures of Rs 80,000 cr to Rs 90,000 cr. That is a thirty-fold gap that no commodity cycle explains. The FY23 figure almost certainly covers only the principal-risk trading vertical while the later ones cover full auction volume. <strong>Joining them would produce a fictitious growth rate.</strong> This report does not join them.</li>
+      <li><strong>Revenue.</strong> FY26 is quoted as both Rs 369.66 cr and Rs 453.04 cr. Both are correct: the first is revenue from operations, the second total income including about Rs 83.38 cr of other income. The apparent contradiction that stalled several secondary analyses dissolves once the base is pinned.</li>
+      <li><strong>EBITDA.</strong> The company reports Q1 FY27 EBITDA of Rs 81.49 cr. The market data service reports Rs 57.73 cr for the same quarter. The difference is exactly the Rs 23.76 cr of other income. <strong>MSTC's own EBITDA definition includes treasury income.</strong> An investor comparing MSTC's stated EBITDA margin with a peer's operating EBITDA margin is comparing two different things, and MSTC comes out roughly 35 per cent better than it should.</li>
+    </ol>
+  </div>
+
+  <h3>Audit of the aggregator's derived metrics</h3>
+  <div class="tw">
+  <table>
+    <thead><tr><th>Screen field</th><th>What it shows</th><th>Why it misleads on MSTC</th></tr></thead>
+    <tbody>
+      <tr><td>Quarterly results series</td><td>A full eight-quarter history</td><td class="be">Partly corrupt. The March-2024 quarter row is byte-identical to the FY24 annual row, and the FY25 quarters sum to Rs 431 cr against an annual Rs 311 cr. Only periods from Apr-2025 reconcile</td></tr>
+      <tr><td>Net cash and debt-free status</td><td>About Rs 1,035 cr of net cash, debt to equity near zero, zero pledge</td><td class="be">The largest trap. Non-debt liabilities of roughly Rs 1,073 cr to Rs 1,216 cr almost exactly offset the cash. Most of that balance is bidders' deposits, not shareholders' money</td></tr>
+      <tr><td>Return on equity of about 24%</td><td>High-quality compounder</td><td class="be">Roughly 30% of the profit is treasury income on that float, and the equity base is small relative to market value. Operating-only return on equity is about 18.5%</td></tr>
+      <tr><td>Free cash flow</td><td>Swings from minus Rs 313 cr to plus Rs 844 cr across years</td><td class="be">Those swings are deposit float movements, not cash generation. Any cash-conversion metric built on this is unusable without stripping the float</td></tr>
+      <tr><td>Five-year revenue and profit growth</td><td>Sharply negative revenue trend, volatile profit</td><td class="be">Spans a gross-to-net presentation change and a subsidiary disposal. The FY23 to FY24 revenue fall from Rs 721 cr to Rs 316 cr is presentation. Any compound growth rate across it is an artefact</td></tr>
+      <tr><td>Total debt of Rs 145 cr</td><td>Modest borrowing</td><td class="am">Identical to the rupee across FY23, FY24 and FY25. A liability that never moves is usually a lease liability or a stale carry-forward, not live borrowing</td></tr>
+      <tr><td>Promoter holding 64.75%, pledge nil</td><td>Stable, safe ownership</td><td class="am">True, and silent on the fact that roughly 85% of the free float is retail with mutual funds at 0.10%. It creates false comfort about who is actually holding the stock</td></tr>
+      <tr class="tot"><td>Sector classification</td><td>Retail Trade, Internet Retail</td><td class="be">Wrong. MSTC is a business-to-government auction service. Any screen that peer-benchmarks it against internet retailers will produce nonsense on margin, growth and multiple</td></tr>
+    </tbody>
+    <caption>Index membership, average traded volume and pledge data were captured and appear in Section 13. Eight screen fields audited; six of them mislead materially, one mildly, and one is simply wrong.</caption>
+  </table>
+  </div>
+
+  <div class="flag info">
+    <div class="fl">The single sentence version</div>
+    <p>A mechanical screen sees a debt-free, cash-rich, 24 per cent return on equity government platform at 21.9 times with a 2.2 per cent yield and flags it as cheap quality. <strong>Six of the eight fields producing that conclusion are distorted by the same underlying fact: MSTC holds a large pool of other people's money, and the screen counts it as the company's.</strong></p>
+  </div>
+</section>
+
+<section id="s20">
+  <div class="ghost">20</div>
+  <div class="sectag">Section 20</div>
+  <h2>Official industry and macro data</h2>
+  <p class="dek">Testing Section 01's picture against the official record, and hunting for places where the official data and management's commentary do not agree.</p>
+
+  <h3>Addressable base, linked to the revenue line it drives</h3>
+  <div class="tw">
+  <table>
+    <thead><tr><th>Official statistic</th><th>Latest official figure</th><th>MSTC revenue line it drives</th><th>MSTC's actual claim on it</th></tr></thead>
+    <tbody>
+      <tr><td>Mineral blocks auctioned</td><td>212 in FY26, a record, against about 90 a year FY22-FY25. 36 blocks operationalised in FY26 against 58 across all of FY16-FY25</td><td>Mineral block auction fees, the FY26 mix driver</td><td class="bu">Nominated provider for major blocks and minor blocks in five named states</td></tr>
+      <tr><td>All-India coal production</td><td>1,047.6 MT in FY25, an all-time high. FY26 target 1,150.39 MT. Coal India produced 781.1 MT in FY25, about 7% short of its own target</td><td>Coal e-auction fees, the largest single relationship</td><td class="am">About 40% of Coal India's e-auction work value, plus a separate 3-year linkage mandate</td></tr>
+      <tr><td>Ferrous scrap consumption</td><td>About 41 MT in FY26, up 17%. Domestic generation 32 MT, up 22%. Imports down about 20%</td><td>Scrap auction fees, historically the founding business</td><td class="am">Undisclosed share. Competes with in-house portals at large generators</td></tr>
+      <tr><td>GeM gross merchandise value</td><td>Rs 5.03 lakh cr in FY26, down 7.4%, the first-ever decline. Rs 18.4 lakh cr cumulative since 2016</td><td class="na">None today. Buy side only</td><td class="be">Nil. This is the competing platform, 6.3 times MSTC's scale and free</td></tr>
+      <tr><td>Disinvestment and asset monetisation target</td><td>Rs 80,000 cr for FY27, against about Rs 34,000 cr achieved in FY26 versus Rs 47,000 cr budgeted</td><td>Surplus asset and land disposal fees</td><td class="am">Indirect. Strategic sales run through investment banks, not auction platforms</td></tr>
+      <tr class="tot"><td>National Monetisation Pipeline 2.0</td><td>Rs 16.72 lakh cr over FY26 to FY30, phased Rs 2.49 / 3.26 / 3.46 / 3.68 / 3.81 lakh cr. Coal Rs 2.16 lakh cr, mines Rs 1 lakh cr</td><td class="na">None confirmed</td><td class="be">Nil confirmed. This is concession and lease-based monetisation, a different mechanism from one-time disposal auctions</td></tr>
+    </tbody>
+    <caption>Measured statistics are the mineral block counts, coal production, scrap tonnage and GeM gross merchandise value. Ministerial projections, directional only, are the FY26 coal target, the FY27 disinvestment target and every National Monetisation Pipeline figure. The previous pipeline has a documented record of sectoral shortfall.</caption>
+  </table>
+  </div>
+
+  <h3>Sizing the platform above MSTC in the chain</h3>
+  <p>GeM's FY26 gross merchandise value of Rs 5.03 lakh cr is <strong>6.3 times</strong> MSTC's Rs 79,737 cr, and its cumulative Rs 18.4 lakh cr since 2016 is more than twenty years of MSTC volume at current run rates. Micro and small enterprises accounted for 47.1 per cent of GeM's FY26 volume across more than 51 lakh orders, and state government procurement on GeM grew 38.3 per cent.</p>
+  <p>The reframing this section normally produces, that a competition narrative is really a market-already-lost narrative, <strong>does not apply cleanly here, and saying so is more useful than forcing it.</strong> GeM is a buyer's marketplace; MSTC is a seller's auction house. The categories barely overlap today and no official statement of intent to extend GeM into disposal was found. What the comparison establishes is capability and precedent: the infrastructure to absorb MSTC's work exists, is already connected to every ministry, and charges nothing.</p>
+  <p>The more immediate competitive fact is narrower and better evidenced: <strong>Indian Railways runs roughly Rs 2.65 lakh cr a year entirely inside its own system.</strong> That is three times MSTC's whole platform volume, sitting permanently outside it, at one counterparty, because of a commission dispute two decades ago.</p>
+
+  <h3>Where the official data and management's commentary disagree</h3>
+  <div class="flag warn">
+    <div class="fl">Contradiction one, and it cuts in MSTC's favour</div>
+    <p>Management attributed the 36.65 per cent fall in first-half FY26 transacted value to <strong>softening scrap prices</strong>. Official trade data for the same year shows domestic scrap generation up 22 per cent to 32 million tonnes, consumption up 17 per cent to about 41 million tonnes, and scrap-based crude steel output up 16 per cent against 11 per cent for steel overall.</p>
+    <p>These are not inconsistent, since an ad valorem fee is geared to value and not to tonnage. But the framing conceals something useful. <strong>Physical activity on MSTC's platform was not falling. Only the rupees per tonne were.</strong> That sets a much lower bar for recovery than a volume problem would: MSTC does not need new mandates or more auctions to restore transacted value, it needs scrap prices to stop falling. Q1 FY27's Rs 23,814 cr, which annualises above the whole of FY26, suggests that has already begun. <strong>This is the most valuable forward-looking inference in the report and nobody appears to be modelling it.</strong></p>
+  </div>
+  <div class="flag info">
+    <div class="fl">Contradiction two, which is really a false pattern to avoid</div>
+    <p>GeM's gross merchandise value fell 7.4 per cent in FY26 and MSTC's fell 11.2 per cent in the same year. It is tempting to read one shared government slowdown into that. The officially stated causes do not support it: GeM's decline is attributed to lower order value from central public sector enterprises, a buyer-spend explanation, while MSTC's is attributed to scrap prices, a commodity explanation. <strong>Two different mechanisms, same direction, same year.</strong> This report records the coincidence and declines to make a causal claim.</p>
+  </div>
+  <div class="flag">
+    <div class="fl">Contradiction three, internal to MSTC</div>
+    <p>In FY26 MSTC's transacted value fell 11 per cent while its fee revenue rose 17 per cent and its reported profit fell 46 per cent. All three are true and all three point different ways. The profit fall is the FY25 disposal gain dropping out, and profit before exceptional items actually grew 22.84 per cent. The revenue-versus-volume gap is the take rate rising from about 31 to about 41 basis points on the record mineral block year.</p>
+    <p><strong>Not one of those three headline numbers describes what happened to the business, and a reader who takes any of them at face value will reach the wrong conclusion.</strong> That is the clearest single illustration of why this company requires the filings that this report could not open.</p>
+  </div>
+
+  <h3>Policy measures relevant to the volume base</h3>
+  <ul>
+    <li>Customs duty on critical-mineral waste and scrap eliminated, lowering recycler input costs.</li>
+    <li>A Rs 1,500 cr scheme rolled out in Oct-2025 for critical mineral recovery from end-of-life batteries, electronic waste and industrial scrap under the national critical mineral mission, with plans for recovery from red mud and fly ash and incentives for recycling centres.</li>
+    <li>The Ministry of Steel's FY27 revenue expenditure allocation is Rs 396.40 cr, which is not an MSTC-specific figure and is a weak proxy for MSTC's operating environment: MSTC is self-funding on fee income and takes no budgetary support.</li>
+    <li>Economic Survey 2025-26, tabled 29-Jan-2026, could not be opened directly. Secondary coverage focused on critical minerals and the circular economy. Any specific Survey treatment of government e-procurement or of MSTC is recorded as not found rather than as absent.</li>
+  </ul>
+</section>
+
+<footer>
+  <section id="src" style="margin-top:0">
+    <div class="ghost">&#8250;</div>
+    <div class="sectag">Sources</div>
+    <h2>Sources and verification status</h2>
+    <p class="dek">Dated list of what was actually used, and an explicit statement of what could not be verified from a primary source.</p>
+
+    <div class="flag">
+      <div class="fl">No annual report, filing, transcript or rating document was opened directly for this report</div>
+      <p>On 21-Sep-2026 the research environment's network egress policy refused connections to every primary source attempted, including both stock exchanges, MSTC's own investor pages, the government press and disinvestment portals, the national audit office, the rating agencies' own sites, and the usual financial data portals. The web-search allowance for the session was also exhausted during the research pass.</p>
+      <p>Consequently <strong>every figure in this report is second hand.</strong> The categories below describe what each source class actually is, so the reader can weight it.</p>
+    </div>
+
+    <h4>Used, and reasonably reliable</h4>
+    <ul class="srcs">
+      <li><b>Licensed market data service, accessed 21-Sep-2026.</b> Price and volume history from Mar-2019 to Sep-2026; annual profit and loss FY19 to FY26; quarterly series, of which only Apr-2025 onward reconciles; FY26 cash flow fields; share count, float, beta, dividend per share; and the 19-Sep-2026 peer snapshot in Section 03. This is an aggregator, therefore a secondary source, and Section 19 documents where it is wrong.</li>
+      <li><b>Dated corporate news wire items, Nov-2024 to Jun-2026.</b> Cabinet approval of the Delhi-NCR replacement scheme (03-Jun-2026, traded 04-Jun-2026); scrappage incentives in a Delhi electric-vehicle policy (29-Jun-2026); exclusive travel partnership filing (26-Mar-2026); Coal India tender award and lowest-bidder status (26-Feb-2026); gold tariff rate quota nomination (05-Nov-2025); Karnataka excise mandate (29-Oct-2025); index fund stake purchase (15-Oct-2025); pollution control board platform approval (15-Sep-2025); 60th annual general meeting notice (01-Sep-2025).</li>
+      <li><b>Credit rating agency commentary, quoted at second hand.</b> A rationale dated 15-Jan-2026 for contingent liabilities of about Rs 1,517 cr at 31-Mar-2025 of which about Rs 943 cr is disputed tax; a rationale dated 30-Jan-2025 framing the bank litigation at about Rs 143.62 cr; and repeated commentary naming the elongated collection period on legacy trading receivables as an active constraint. Ratings of CARE BBB+ with A2, and Acuite A+ with A1+.</li>
+      <li><b>National audit report No. 14 of 2021</b>, quoted at second hand, on the imprudent extension of financial assistance and Rs 220.84 cr unrecovered as at Feb-2021. A separate audit report No. 20 of 2016 on coal mine e-auctions was identified but not read.</li>
+      <li><b>Government press and ministry data, quoted at second hand.</b> GeM gross merchandise value FY22 to FY26 and the Rs 18.4 lakh cr cumulative figure; mineral block auction counts including the FY26 record of 212; coal production of 1,047.6 MT in FY25; National Monetisation Pipeline 2.0 figures; Union Budget FY27 disinvestment target of Rs 80,000 cr.</li>
+      <li><b>Trade data on Indian ferrous scrap for FY26</b>, quoted at second hand: consumption about 41 MT, domestic generation 32 MT, scrap-based crude steel 38 MT, imports down about 20 per cent.</li>
+      <li><b>Company results releases relayed through financial media</b>, for Q1 FY27 (approved around 13-Aug-2026), FY26 (approved 29 or 30-May-2026), and Q3 FY26 (board meeting 11-Feb-2026, dividend record date 18-Feb-2026).</li>
+    </ul>
+
+    <h4>Claims that could NOT be verified from a primary source</h4>
+    <ul class="srcs">
+      <li><b>The earnest money deposit liability, for any year.</b> The central number in the valuation. Section 14's float adjustment rests on a balance-sheet identity, not on the disclosed line.</li>
+      <li><b>Whether MSTC retains the interest earned on that float.</b> Bidders demonstrably earn nothing. What happens to the income is unknown.</li>
+      <li><b>The decomposition of other income</b> into interest on deposits, interest on tax refunds, provision write-backs, mark to market and joint venture dividend, for any year.</li>
+      <li><b>Operating cash flow for any year before FY26</b>, and any explanation for FY26's 23 per cent conversion.</li>
+      <li><b>The vehicle scrapping joint venture's revenue, profit, carrying value, MSTC's equity-accounted share, and vehicle throughput.</b> Section 14 shows the market paying roughly Rs 500 cr for this.</li>
+      <li><b>The size of the disposal gain.</b> Reported at Rs 263.19 cr, Rs 273.54 cr and Rs 301.69 cr by three sources, with a fourth giving a different Q3 FY25 profit entirely.</li>
+      <li><b>Whether the revenue recognition basis changed from gross to net, and when.</b> Circumstantial evidence only.</li>
+      <li><b>Customer concentration.</b> No major-customer disclosure was reachable.</li>
+      <li><b>The auditor's report</b> for any year: tenure, rotation, qualifications, emphasis of matter, and the statutory annexure findings.</li>
+      <li><b>The eight-quarter shareholding trend and the retail shareholder headcount.</b> One quarter was obtained. The headcount, the most direct froth indicator, was not.</li>
+      <li><b>Bulk and block deals in the Sep-2025 to Sep-2026 window.</b> The only deal found dates from 25-Jul-2024.</li>
+      <li><b>Current surveillance status.</b> One source says clean since 11-Nov-2019; another, uncorroborated, claims Stage I short-term surveillance as at 03-Aug-2026.</li>
+      <li><b>Derivatives eligibility, and Nifty PSE, MSCI and FTSE index membership.</b></li>
+      <li><b>The ten percentage point drift in the promoter stake</b> between the Mar-2019 listing and Mar-2024. No covering transaction was identified.</li>
+      <li><b>Why board composition fines continued into Q3 and Q4 FY26</b> after the stated Apr to Jun 2025 remediation.</li>
+      <li><b>Mandate detail for Customs and revenue intelligence, the Ministry of Defence, oil sector undertakings and any international work.</b> The research pass was cut short before these could be run down.</li>
+      <li><b>The entirety of Section 10.</b> No ground-level signal work was possible.</li>
+      <li><b>Analyst coverage.</b> Two institutional brokers with Neutral ratings and targets of Rs 819 and Rs 755 appear plausible but could not be confirmed against the brokers' own work.</li>
+      <li><b>Verbatim management strategy</b> from any annual report or investor presentation. Section 18's numbered strategy is reconstructed from announcements.</li>
+    </ul>
+
+    <h4>Claims actively rejected during research</h4>
+    <ul class="srcs">
+      <li><b>A 9-for-1 bonus issue in Aug-2025.</b> Refuted by price continuity: the unadjusted series runs Rs 478.05 at end-Jul-2025 and Rs 451.25 at end-Aug-2025, with no discontinuity. A 9:1 bonus would produce roughly a 90 per cent gap. An Apr-2025 corporate action some sources labelled a bonus was an interim dividend of Rs 4.50.</li>
+      <li><b>A Q2 FY25 revenue figure of about Rs 719 cr.</b> Eight to nine times every neighbouring quarter. Rejected as a scraping error.</li>
+      <li><b>An overall commission rate of 2.8 per cent or a gross transaction fee of 4 per cent.</b> These relate to one small regulatory-credit vertical, not to MSTC's blended rate, which back-solves to roughly 40 basis points.</li>
+      <li><b>Automated and content-farm price targets.</b> Several circulate with no named analyst or house attached. Disregarded entirely.</li>
+    </ul>
+
+    <div class="disc">
+      <strong>Disclaimer.</strong> This document is an independent research note prepared for information and discussion. It contains no rating, recommendation, conviction level or advice to buy, sell or hold any security, and the two cases in Section 16 are presented in opposition by design. Scenario prices are illustrative outputs of stated assumptions, not forecasts. The author is not a registered investment adviser or research analyst, and this is not investment advice. Every material figure is second hand for the reasons set out above, and several conclusions are explicitly provisional on reading filings that could not be opened. Anyone acting on this should verify the underlying figures against MSTC's own filed results and annual report first.
+    </div>
+    <div class="gen">Generated on 21-Sep-2026 &middot; Data as of Q1 FY27 (quarter ended 30-Jun-2026) &middot; Market data as of 19-Sep-2026 close &middot; MSTC Limited, NSE MSTCLTD, BSE 542597</div>
+  </section>
+</footer>
+
+</main>
+</div>
+
+<div class="ctl">
+  <button id="themetog" type="button">Terminal theme</button>
+  <button id="toctog" type="button">Show contents</button>
+  <button id="ratetog" type="button">Hide ratings</button>
+</div>
+
+<script>
+(function(){
+  var h=document.documentElement, b=document.body;
+  var K={t:'mstcltd_theme',c:'mstcltd_toc_hidden',r:'mstcltd_ratings_hidden'};
+  function save(k,v){try{localStorage.setItem(k,v);}catch(e){}}
+  function get(k){try{return localStorage.getItem(k);}catch(e){return null;}}
+
+  if(h.getAttribute('data-badges')==='off'){b.classList.add('badges-off');}
+
+  var themeBtn=document.getElementById('themetog');
+  var tocBtn=document.getElementById('toctog');
+  var rateBtn=document.getElementById('ratetog');
+
+  function paintTheme(){
+    var cur=h.getAttribute('data-theme')==='glass'?'glass':'terminal';
+    themeBtn.textContent = cur==='glass' ? 'Terminal theme' : 'Glass theme';
+  }
+  function paintToc(){
+    tocBtn.textContent = h.getAttribute('data-toc')==='off' ? 'Show contents' : 'Hide contents';
+  }
+  function paintRate(){
+    rateBtn.textContent = b.classList.contains('badges-off') ? 'Show ratings' : 'Hide ratings';
+  }
+  paintTheme(); paintToc(); paintRate();
+
+  themeBtn.addEventListener('click',function(){
+    var next = h.getAttribute('data-theme')==='glass' ? 'terminal' : 'glass';
+    h.setAttribute('data-theme',next); save(K.t,next); paintTheme();
+  });
+  tocBtn.addEventListener('click',function(){
+    if(h.getAttribute('data-toc')==='off'){h.removeAttribute('data-toc'); save(K.c,'0');}
+    else {h.setAttribute('data-toc','off'); save(K.c,'1');}
+    paintToc();
+  });
+  rateBtn.addEventListener('click',function(){
+    b.classList.toggle('badges-off');
+    save(K.r, b.classList.contains('badges-off') ? '1' : '0');
+    paintRate();
+  });
+
+  var prog=document.getElementById('prog');
+  var links=[].slice.call(document.querySelectorAll('#rail a'));
+  var secs=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));});
+  var ticking=false;
+  function onScroll(){
+    var st=window.pageYOffset||document.documentElement.scrollTop;
+    var dh=Math.max(1,(document.documentElement.scrollHeight - window.innerHeight));
+    prog.style.width=Math.min(100,(st/dh)*100)+'%';
+    var idx=0;
+    for(var i=0;i<secs.length;i++){
+      if(secs[i] && secs[i].getBoundingClientRect().top <= 130){idx=i;}
+    }
+    for(var j=0;j<links.length;j++){
+      if(j===idx){links[j].classList.add('on');} else {links[j].classList.remove('on');}
+    }
+    ticking=false;
+  }
+  window.addEventListener('scroll',function(){
+    if(!ticking){window.requestAnimationFrame(onScroll);ticking=true;}
+  },{passive:true});
+  onScroll();
+})();
+</script>
+</body>
+</html>
