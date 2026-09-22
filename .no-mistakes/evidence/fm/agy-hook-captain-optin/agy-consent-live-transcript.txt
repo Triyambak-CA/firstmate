@@ -1,0 +1,281 @@
+firstmate agy turn-end hook - captain opt-in, driven live
+date: 2026-09-22T07:48:06Z
+repo: /Users/triyambak/.no-mistakes/worktrees/75495643dde0/01M32NQYQ0DS0QKSAVRSVZ6RPG
+head: 8933602
+scratch machine: /var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-consent-lab.nREwoT
+real ~/.gemini/config/hooks.json present: no
+
+=== S1  an unasked home refuses, asks once, and writes nothing ===
+
+--- the captain's store before firstmate is asked
+{"someone-elses-hook":{"Stop":[{"type":"command","command":"echo hi"}]}}
+
+--- fm-agy-turnend-hook.sh install   (no answer recorded)
+fm-agy-turnend-hook: refused: the captain has not been asked about the global agy turn-end hook. ASK THE CAPTAIN ONCE whether firstmate may add its own 'firstmate-turn-end' key to '/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-consent-lab.nREwoT/unasked/agyhome/.gemini/config/hooks.json', a file agy and the Antigravity IDE share with the captain's own sessions, and put its own small turn-end script '/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-consent-lab.nREwoT/unasked/agyhome/.gemini/antigravity-cli/fm-turn-end.sh' and token folder '/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-consent-lab.nREwoT/unasked/agyhome/.gemini/antigravity-cli/fm-turn-end.d' beside it, then record the answer by writing allow or deny to '/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-consent-lab.nREwoT/unasked/fmhome/config/agy-turnend-hook'.
+exit=1
+PASS  install refused rather than writing the captain's file
+PASS  the refusal carries the one-time ask
+PASS  the refusal names where to record the answer
+PASS  the refusal names the file that would be written
+
+--- the captain's store after the refusal
+{"someone-elses-hook":{"Stop":[{"type":"command","command":"echo hi"}]}}
+PASS  hooks.json is byte-identical
+PASS  no hook script was planted
+PASS  no token registry was planted
+
+=== S2  the captain answers allow: one key added, everything else intact ===
+
+--- config/agy-turnend-hook now reads
+allow
+
+--- fm-agy-turnend-hook.sh install
+(no output)
+exit=0
+PASS  the consented install succeeded
+PASS  a consented install does not ask
+
+--- the captain's store after the consented install
+{
+  "someone-elses-hook": {
+    "Stop": [
+      {
+        "type": "command",
+        "command": "echo hi"
+      }
+    ]
+  },
+  "firstmate-turn-end": {
+    "PreInvocation": [
+      {
+        "type": "command",
+        "command": "'/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-consent-lab.nREwoT/unasked/agyhome/.gemini/antigravity-cli/fm-turn-end.sh' pre-invocation",
+        "timeout": 5
+      }
+    ],
+    "Stop": [
+      {
+        "type": "command",
+        "command": "'/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-consent-lab.nREwoT/unasked/agyhome/.gemini/antigravity-cli/fm-turn-end.sh' stop",
+        "timeout": 5
+      }
+    ]
+  }
+}
+PASS  exactly one key was added
+PASS  the captain's own key is untouched
+
+--- what firstmate put beside it
+total 16
+drwxr-xr-x@ 6 triyambak  staff   192 Sep 22 13:18 .
+drwxr-xr-x@ 4 triyambak  staff   128 Sep 22 13:18 ..
+drwxr-xr-x@ 3 triyambak  staff    96 Sep 22 13:18 brain
+drwx------@ 2 triyambak  staff    64 Sep 22 13:18 fm-turn-end.d
+-rwx------@ 1 triyambak  staff  1906 Sep 22 13:18 fm-turn-end.sh
+-rw-r--r--@ 1 triyambak  staff    40 Sep 22 13:18 settings.json
+PASS  the hook script is installed and executable
+PASS  the private token registry exists
+
+=== S3  a recorded answer is never asked about again ===
+
+--- a second spawn's install, same home
+(silent)
+exit=0
+PASS  the repeat install is a quiet no-op
+PASS  the captain is not asked a second time
+
+--- a home whose captain already said deny
+fm-agy-turnend-hook: refused: the captain declined the global agy turn-end hook in '/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-consent-lab.nREwoT/denied-quietly/fmhome/config/agy-turnend-hook'; any key an earlier consent installed has been removed.
+exit=1
+PASS  a recorded deny refuses the install
+PASS  a recorded deny is not re-asked either
+PASS  a denied home's store is left alone
+
+=== S4  the captain changes his mind: deny takes the earlier write back ===
+
+--- config/agy-turnend-hook now reads
+deny
+
+--- the next install after the withdrawal
+fm-agy-turnend-hook: refused: the captain declined the global agy turn-end hook in '/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-consent-lab.nREwoT/unasked/fmhome/config/agy-turnend-hook'; any key an earlier consent installed has been removed.
+exit=1
+PASS  the withdrawn consent still refuses the install
+PASS  the refusal says the earlier key was taken back
+
+--- the captain's store after the retraction
+{
+  "someone-elses-hook": {
+    "Stop": [
+      {
+        "type": "command",
+        "command": "echo hi"
+      }
+    ]
+  }
+}
+PASS  firstmate's key is gone
+PASS  the captain's own key survived the retraction
+
+--- what is left in agy's directory
+total 8
+drwxr-xr-x@ 4 triyambak  staff  128 Sep 22 13:18 .
+drwxr-xr-x@ 4 triyambak  staff  128 Sep 22 13:18 ..
+drwxr-xr-x@ 3 triyambak  staff   96 Sep 22 13:18 brain
+-rw-r--r--@ 1 triyambak  staff   40 Sep 22 13:18 settings.json
+PASS  the hook script was withdrawn too
+PASS  the empty token registry was withdrawn too
+PASS  agy's own settings.json is untouched
+PASS  agy's own brain/ is untouched
+
+=== S5  a withdrawal never takes a live task's token, and never blames agy's files ===
+
+--- a live crewmate's token sitting in the registry
+fm.aaaaaaaaaaaa
+
+--- fm-agy-turnend-hook.sh remove
+fm-agy-turnend-hook: '/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-consent-lab.nREwoT/live-token/agyhome/.gemini/antigravity-cli/fm-turn-end.d' still holds live per-task tokens, so it was left in place.
+exit=0
+PASS  the withdrawal completed
+PASS  the operator is told the registry was left for a live task
+PASS  the withdrawal no longer blames agy's own directory
+PASS  the live token survived
+PASS  the hook script was still taken back
+PASS  agy's own settings.json survived
+PASS  the key was still removed
+
+=== S6  an answer firstmate cannot read is never treated as yes ===
+
+--- config/agy-turnend-hook holds 'sometimes'
+fm-agy-turnend-hook: refused: '/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-consent-lab.nREwoT/bad-sometimes/fmhome/config/agy-turnend-hook' holds 'sometimes'; accepted values are: allow, deny.
+exit=1
+PASS  'sometimes' did not authorise a write
+PASS  'sometimes' left the store alone
+
+--- config/agy-turnend-hook holds 'ALLOW'
+fm-agy-turnend-hook: refused: '/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-consent-lab.nREwoT/bad-ALLOW/fmhome/config/agy-turnend-hook' holds 'ALLOW'; accepted values are: allow, deny.
+exit=1
+PASS  'ALLOW' did not authorise a write
+PASS  'ALLOW' left the store alone
+
+--- config/agy-turnend-hook holds 'yes'
+fm-agy-turnend-hook: refused: '/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-consent-lab.nREwoT/bad-yes/fmhome/config/agy-turnend-hook' holds 'yes'; accepted values are: allow, deny.
+exit=1
+PASS  'yes' did not authorise a write
+PASS  'yes' left the store alone
+
+--- config/agy-turnend-hook holds ''
+fm-agy-turnend-hook: refused: '/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-consent-lab.nREwoT/bad-empty/fmhome/config/agy-turnend-hook' holds ''; accepted values are: allow, deny.
+exit=1
+PASS  '' did not authorise a write
+PASS  '' left the store alone
+
+--- a whitespace-padded allow is still a yes
+exit=0 keys=firstmate-turn-end,someone-elses-hook
+PASS  '  allow  ' installs
+
+--- a consent file that is a symlink
+
+exit=0
+store keys=firstmate-turn-end,someone-elses-hook
+
+--- a consent file that is a directory
+fm-agy-turnend-hook: refused: '/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-consent-lab.nREwoT/dir-consent/fmhome/config/agy-turnend-hook' must be a readable regular file holding one of: allow, deny.
+exit=1
+PASS  a directory in place of the answer refuses
+PASS  a directory in place of the answer writes nothing
+
+=== S7  consent does not override the store guards ===
+
+--- a symlinked hooks.json, with consent recorded
+fm-agy-turnend-hook: refused: '/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-consent-lab.nREwoT/symlink-store/agyhome/.gemini/config/hooks.json' is a symlink; firstmate edits only a regular file it owns.
+exit=1
+PASS  a symlinked store is still refused under allow
+PASS  the symlink target was not written
+PASS  the refused run left no hook script behind
+
+--- a hooks.json holding an array, with consent recorded
+fm-agy-turnend-hook: refused: '/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-consent-lab.nREwoT/array-store/agyhome/.gemini/config/hooks.json' does not hold a JSON object; firstmate edits only a store it can read.
+exit=1
+PASS  a non-object store is still refused under allow
+PASS  the non-object store is unchanged
+PASS  the refused run left no hook script behind
+
+=== S8  a recorded deny is honoured at session start, not only at the next spawn ===
+
+--- bootstrap with nothing recorded
+(no agy-turnend line)
+PASS  bootstrap says nothing about a consent nobody recorded
+
+--- the captain consents, the key goes in, then he withdraws
+store keys after install=firstmate-turn-end,someone-elses-hook
+PASS  a standing allow is not retracted at session start
+
+--- the next session start after the withdrawal
+BOOTSTRAP_INFO: config/agy-turnend-hook reads deny - withdrew firstmate's agy turn-end hook and its files
+PASS  session start reports the completed withdrawal as a plain fact
+PASS  a clean withdrawal does not travel under the actionable prefix
+store keys after session start=someone-elses-hook
+PASS  the key was withdrawn at session start
+PASS  the hook script was withdrawn at session start
+
+--- the session start after that
+PASS  an already-clean store is not announced again
+
+--- a withdrawal that cannot complete (store replaced by a symlink)
+AGY_TURNEND_HOOK: config/agy-turnend-hook reads deny but firstmate's agy turn-end hook could not be withdrawn - run bin/fm-agy-turnend-hook.sh remove
+PASS  a failed withdrawal is raised under the actionable prefix
+
+=== S9  the answer stays on the machine it was given for ===
+
+--- the declared inheritable set vs the remote-transferable set
+FM_INHERITABLE_CONFIG: crew-dispatch.json crew-harness backlog-backend backend herdr-presentation-spaces startup-memory-budget trace-context launch-env-allowlist claude-permission-mode lavish-axi-host agy-turnend-hook
+--- fm_config_inherit_items (remote allowlist) ---
+config/crew-dispatch.json
+config/crew-harness
+config/backlog-backend
+config/backend
+config/herdr-presentation-spaces
+config/startup-memory-budget
+config/trace-context
+config/launch-env-allowlist
+config/claude-permission-mode
+config/lavish-axi-host
+data/captain-shared.md
+PASS  the consent is declared inheritable for local convergence
+PASS  the consent is excluded from the remote allowlist
+
+--- an unasked LOCAL secondmate is sent to the primary's file, not its own
+fm-agy-turnend-hook: refused: the captain has not been asked about the global agy turn-end hook. ASK THE CAPTAIN ONCE whether firstmate may add its own 'firstmate-turn-end' key to '/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-consent-lab.nREwoT/secondmate/agyhome/.gemini/config/hooks.json', a file agy and the Antigravity IDE share with the captain's own sessions, and put its own small turn-end script '/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-consent-lab.nREwoT/secondmate/agyhome/.gemini/antigravity-cli/fm-turn-end.sh' and token folder '/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-consent-lab.nREwoT/secondmate/agyhome/.gemini/antigravity-cli/fm-turn-end.d' beside it, then record the answer by writing allow or deny to '/var/folders/2g/pz67jzvx3vx2bf5jsjfjfw600000gn/T//agy-consent-lab.nREwoT/secondmate/fmhome/config/agy-turnend-hook', this machine's primary firstmate home.
+exit=1
+PASS  the secondmate's refusal names the primary home's file
+PASS  the refusal says which home that is
+
+=== S10  what the captain was told he was consenting to, run for real ===
+
+--- the command agy will run, as registered in the captain's store
+{"PreInvocation":[{"type":"command","command":"'<lab>/agyhome/.gemini/antigravity-cli/fm-turn-end.sh' pre-invocation","timeout":5}],"Stop":[{"type":"command","command":"'<lab>/agyhome/.gemini/antigravity-cli/fm-turn-end.sh' stop","timeout":5}]}
+
+--- an agy session firstmate did NOT launch (no token in the environment)
+stdout={"decision":"stop"}
+PASS  the hook answers agy and does nothing else
+
+--- a forged token naming a file outside the registry
+stdout={"decision":"stop"}
+PASS  a forged token cannot escape the registry
+
+--- a real firstmate crewmate's turn ending
+turn-end marker before: absent
+stdout={"decision":"stop"}
+turn-end marker after: present
+PASS  firstmate's own turn-end marker was touched
+
+--- everything the firing wrote, and where
+<lab>/fmhome/state/task-1.busy-state
+<lab>/fmhome/state/task-1.turn-ended
+<lab>/agyhome/.gemini/antigravity-cli/fm-turn-end.d
+<lab>/agyhome/.gemini/antigravity-cli/fm-turn-end.sh
+
+=== RESULT ===
+real ~/.gemini/config/hooks.json present at end: no
+real ~/.gemini/antigravity-cli/fm-turn-end.sh present at end: no
+checks failed: 0

@@ -1,0 +1,10 @@
+{
+  "someone-elses-hook": {
+    "Stop": [
+      {
+        "type": "command",
+        "command": "echo hi"
+      }
+    ]
+  }
+}
